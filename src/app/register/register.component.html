@@ -1,0 +1,85 @@
+<div class="container">
+  <div class="col-5">
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" novalidate>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" id="email" formControlName="email">
+      </div>
+      <div *ngIf="!email.valid && email.touched">
+        <div [hidden]="!email.errors.required">
+          <p style="color: red">Email must be required</p>
+        </div>
+        <div [hidden]="!email.errors.email">
+          <p style="color: red"> Email must be contain '@...'</p>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" id="password" formControlName="password">
+      </div>
+      <div *ngIf="!password.valid && password.touched">
+        <div [hidden]="!password.errors.required">
+          <p style="color: red">Password must be required</p>
+        </div>
+        <div [hidden]="!password.errors.minlength">
+          <p style="color: red"> Password must has length min is 6</p>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="confirmPassword">Confirm password</label>
+        <input type="password" class="form-control" id="confirmPassword" formControlName="confirmPassword" pattern="{{password.value}}">
+      </div>
+      <div *ngIf="!confirmPassword.valid && confirmPassword.touched">
+        <div [hidden]="!confirmPassword.errors.required">
+          <p style="color: red">Password must be required</p>
+        </div>
+        <div [hidden]="!confirmPassword.errors.pattern">
+          <p style="color: red"> Confirm password must like the password</p>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="country">Country</label>
+        <select id="country" name="country" formControlName="country">
+          <option [ngValue]="c.id" *ngFor="let c of countryList">{{c.name}}
+          </option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="age">Age</label>
+        <input type="number" class="form-control" id="age" formControlName="age">
+      </div>
+      <div *ngIf="!age.valid && age.touched">
+        <div [hidden]="!age.errors.required">
+          <p style="color: red">Age must be required</p>
+        </div>
+        <div [hidden]="!age.errors.min">
+          <p style="color: red">Age must be greater than 18</p>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="gender">Gender</label>
+        <input type="radio" value="male" id="gender" name="gender" formControlName="gender"> Male
+        <input type="radio" value="female" id="gender" name="gender" formControlName="gender"> Female
+      </div>
+      <div *ngIf="!gender.valid && gender.touched">
+        <div [hidden]="!gender.errors.required">
+          <p style="color: red">Gender must be required</p>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone</label>
+        <input type="text" class="form-control" id="phone" formControlName="phone">
+      </div>
+      <div *ngIf="!phone.valid && phone.touched">
+        <div [hidden]="!phone.errors.required">
+          <p style="color: red">Password must be required</p>
+        </div>
+        <div [hidden]="!phone.errors.pattern">
+          <p style="color: red"> Wrong syntax</p>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="!registerForm.valid">Submit</button>
+    </form>
+  </div>
+</div>
+
