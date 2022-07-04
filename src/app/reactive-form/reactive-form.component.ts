@@ -9,8 +9,8 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 export class ReactiveFormComponent implements OnInit {
   studentForm = new FormGroup({
     studentId: new FormControl('', [Validators.required, Validators.minLength(5)]),
-    firstname: new FormControl('', [Validators.required]),
-    lastname: new FormControl(),
+    firstname: new FormControl('', [Validators.pattern('^[a-zA-Z]+$')]),
+    lastname: new FormControl('', [Validators.required, Validators.minLength(3)]),
     address: new FormGroup({
       street: new FormControl(),
       city: new FormControl()
@@ -24,6 +24,12 @@ export class ReactiveFormComponent implements OnInit {
   }
   get studentId() {
     return this.studentForm.get('studentId');
+  }
+  get lastname() {
+    return this.studentForm.get('lastname');
+  }
+  get firstname() {
+    return this.studentForm.get('firstname');
   }
   submit() {
     console.log(this.studentForm.value);

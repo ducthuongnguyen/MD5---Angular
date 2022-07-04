@@ -17,9 +17,22 @@
         <label for="firstname">First name</label>
         <input type="text" id="firstname" formControlName="firstname" class="form-control">
       </div>
+      <div *ngIf="!firstname.valid && firstname.touched">
+        <div [hidden]="!firstname.errors.pattern">
+          <p style="color: red">Firstname must be character</p>
+        </div>
+      </div>
       <div class="form-group">
         <label for="lastname">Last name</label>
         <input type="text" id="lastname" formControlName="lastname" class="form-control">
+      </div>
+      <div *ngIf="!lastname.valid && lastname.touched">
+        <div [hidden]="!lastname.errors.required">
+          <p style="color: red">Last name is required</p>
+        </div>
+        <div [hidden]="!lastname.errors.minlength">
+          <p style="color: red">Last name has min length is 3</p>
+        </div>
       </div>
       <div formGroupName="address">
         <div class="form-group">
