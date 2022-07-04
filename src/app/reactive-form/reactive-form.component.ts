@@ -17,20 +17,35 @@ export class ReactiveFormComponent implements OnInit {
     })
   });
 
+  student = {
+    studentId: 'CG-001',
+    firstname: 'Thuong',
+    lastname: 'Nguyen',
+    address: {
+      street: 'Hai Duong',
+      city: 'Hai Duong'
+    }
+  };
+
   constructor() {
+    this.studentForm.setValue(this.student);
   }
 
   ngOnInit() {
   }
+
   get studentId() {
     return this.studentForm.get('studentId');
   }
+
   get lastname() {
     return this.studentForm.get('lastname');
   }
+
   get firstname() {
     return this.studentForm.get('firstname');
   }
+
   submit() {
     console.log(this.studentForm.value);
   }
