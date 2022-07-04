@@ -1,10 +1,17 @@
 <h1>Create student</h1>
 <div class="container">
   <div class="col-5">
-    <form [formGroup]="studentForm" (ngSubmit)="submit()" >
+    <form [formGroup]="studentForm" (ngSubmit)="submit()" novalidate>
       <div class="form-group">
         <label for="studentId">ID</label>
         <input type="text" id="studentId" formControlName="studentId" class="form-control">
+      </div>
+      <div *ngIf="!studentId.valid && (studentId.dirty || studentId.touched)">
+        <div [hidden]="!studentId.errors.required">
+          <p style="color: red">Student ID is required!</p>
+        </div>
+       <div [hidden]="!studentId.errors.minlength"></div>
+        <p style="color: red">Student ID minlength is 5!</p>
       </div>
       <div class="form-group">
         <label for="firstname">First name</label>
@@ -24,7 +31,7 @@
           <input type="text" id="city" formControlName="city" class="form-control">
         </div>
       </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
+      <button type="submit" class="btn btn-primary" [disabled]="!studentForm.valid">Submit</button>
     </form>
   </div>
 </div>
