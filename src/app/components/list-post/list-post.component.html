@@ -1,0 +1,28 @@
+<a routerLink="create-post">Create a new post</a>
+<div class="container">
+  <div col="5">
+    <table class="table">
+      <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Title</th>
+        <th scope="col">Content</th>
+        <th scope="col">Created date</th>
+        <th scope="col">Likes</th>
+        <th scope="col">Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let p of posts">
+        <th scope="row">{{p.id}}</th>
+        <td>{{p.title}}</td>
+        <td>{{p.content}}</td>
+        <td>{{p.createdAt}}</td>
+        <td>{{p.likes}}</td>
+        <td><button (click)="delete(p.id)">Delete</button></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
