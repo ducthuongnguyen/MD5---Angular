@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="col-5">
+    <form [formGroup]="editForm" (ngSubmit)="updateStudent()">
+<!--        <input type="hidden" class="form-control" id="id" formControlName="id">-->
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" formControlName="name">
+      </div>
+      <div class="form-group">
+        <label for="score">Score</label>
+        <input type="number" class="form-control" id="score" formControlName="score">
+      </div>
+      <div class="form-group">
+        <label for="age">Age</label>
+        <input type="number" class="form-control" id="age" formControlName="age">
+      </div>
+      <div class="form-group" >
+        <label>Class</label>
+        <select formControlName="clazzId">
+          <option [selected]="true">Choose class...</option>
+          <option *ngFor="let c of listClazz" [value]="c.id">
+            {{c.name}}
+          </option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+</div>
